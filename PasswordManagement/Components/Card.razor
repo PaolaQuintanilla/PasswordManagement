@@ -1,0 +1,41 @@
+﻿@using PasswordManagement.Data
+@using PasswordManagement.DataModel
+<div class="m-2 card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">@information.Name</h5>
+        <p class="card-text">@information.UserName</p>
+        <p class="card-text">@information.URL</p>
+        <a href="#" class="btn btn-primary" @onclick="@EditElement">Edit</a>
+        <a href="#" class="btn btn-primary" @onclick="@DeleteElement">Delete</a>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string? Name { get; set; }
+
+    [Parameter]
+    public string? UserName { get; set; }
+
+    [Parameter]
+    public string? URL { get; set; }
+
+    [Parameter]
+    public PasswordModel information { get; set; }
+
+    [Parameter]
+    public EventCallback<PasswordModel> Edit { get; set; }
+
+    [Parameter]
+    public EventCallback<PasswordModel> Delete { get; set; }
+
+    private Task EditElement()
+    {
+        return Edit.InvokeAsync(information);
+    }
+
+    private Task DeleteElement()
+    {
+        return Delete.InvokeAsync(information);
+    }
+}

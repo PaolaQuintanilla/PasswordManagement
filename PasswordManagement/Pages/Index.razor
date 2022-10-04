@@ -1,0 +1,105 @@
+﻿@page "/"
+@using PasswordManagement.Componenta2
+@using PasswordManagement.Components
+@using PasswordManagement.Data
+@using PasswordManagement.DataModel
+@using PasswordManagement.Services
+@inject IPasswordService pwsService;
+
+<PageTitle>Index</PageTitle>
+
+<h1>Password Management</h1>
+
+Welcome to your place to manage your password
+
+<div class="container d-flex flex-wrap align-items-center">
+@{
+     foreach (PasswordModel infoP in informationPass)
+    {
+        <Card Information="@infoP" Edit="@OpenEditDialog" Delete="@DeleteElement" />
+    }
+}
+</div>
+
+<!-- Button Dialog -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" @onclick="() => OpenCreateDialog()">
+    Create Password
+</button>
+
+@if(OpenDialog) 
+{
+    <PasswordManagement.Componenta2.ModelDialog OnClose="@CloseDialog" Create="@CreateElement" EditElement="@UpdateElement" Element="@Element" Edit="@Edit" />
+} 
+
+
+@code {
+
+    public bool OpenDialog { get; set; }
+    private PasswordModel Element { get; set; }
+    private bool Edit { get; set; }
+    public List<PasswordModel> informationPass = new List<PasswordModel>();
+    private int IdCount;
+    //Initialize Section
+    protected override async Task OnInitializedAsync()
+    {
+        await GetPasswords();
+    }
+
+    //Crud Operations
+    #region CRUD
+
+    private async Task GetPasswords()
+    {
+        informationPass = await pwsService.GetPasswords();
+        IdCount = informationPass.Count + 1;
+    }
+
+    private async void CreateElement(PasswordModel information)
+    {
+        information.Id = IdCount++;
+        await pwsService.CreatePassword(information);
+        informationPass.Add(information);
+        Element = new PasswordModel();
+        OpenDialog = false;
+        StateHasChanged();
+    }
+
+    private async void UpdateElement(PasswordModel information)
+    {
+        await pwsService.UpdatePassword(information);
+        Element = new PasswordModel();
+        OpenDialog = false;
+        StateHasChanged();
+    }
+
+    private async void DeleteElement(PasswordModel information)
+    {
+        await pwsService.DeletePassword(information.Id);
+        informationPass.Remove(information);
+        StateHasChanged();
+    }
+#endregion
+
+    //Dialog Popup Section
+#region Dialog
+    private void OpenCreateDialog()
+    {
+        Edit = false;
+        Element = new PasswordModel();
+        OpenDialog = true;
+    }
+
+    private void OpenEditDialog(PasswordModel information)
+    {
+        Element = information;
+        Edit = true;
+        OpenDialog = true;
+    }
+
+    private void CloseDialog(PasswordModel information = null)
+    {
+        OpenDialog = false;
+        StateHasChanged();
+    }
+#endregion
+}

@@ -1,0 +1,109 @@
+﻿@using PasswordManagement.Data
+@using PasswordManagement.DataModel
+@inject IJSRuntime JS
+<div class="modal fade show" id="myModal" style="display:block; background-color: rgba(10,10,10,.8);" aria-modal="true" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Password</h4>
+            </div>
+             <EditForm Model="@Element" OnValidSubmit="@HandleValidSubmit">
+                <div class="modal-body">
+                    <DataAnnotationsValidator />
+                    
+                    <p>
+                        <label for="identifier">Name: </label>
+                            <InputText class="form-control" placeholder="Name" id="Name" @bind-Value="Element.Name" />
+                            <ValidationMessage For="() => Element.Name" />
+                    </p>
+
+                    <p>
+                        <label for="identifier">URL: </label>
+                            <InputText class="form-control" placeholder="sample.com" id="identifier" @bind-Value="Element.URL" />
+                            <ValidationMessage For="() => Element.URL" />
+                    </p>
+                    <p>
+                        <label for="identifier">Username: </label>
+                            <InputText class="form-control" placeholder="Username" id="Username" @bind-Value="Element.UserName" />
+                            <ValidationMessage For="() => Element.UserName" />
+                    </p>
+                    <p>
+                        <label for="identifier">Password: </label>
+                        <div class='e-input-group'>
+                            <InputText type="@TxtType" class="form-control" placeholder="Password" id="identifier" @bind-Value="Element.Password" />
+                            <span class='e-icons e-input-eye' @onclick="ShowPassword"></span>
+                        </div>
+                        <ValidationMessage For="() => Element.Password" />
+                    </p>
+                    @*<div id="ControlRegion">
+                        <div class="col-lg-6 control-section">
+                            <div class='e-input-group'>
+                                <input class='e-input' type="@TxtType" placeholder='Enter Password'>
+                                <span class='e-icons e-input-eye' @onclick="ShowPassword"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-eye"></i>*@
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn" @onclick="@ModalCancel">Cancel</button>
+                </div>
+             </EditForm>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public EventCallback<PasswordModel> OnClose { get; set; }
+
+    [Parameter]
+    public EventCallback<PasswordModel> Create { get; set; }
+
+    [Parameter]
+    public EventCallback<PasswordModel> EditElement { get; set; }
+
+    [Parameter]
+    public PasswordModel Element { get; set; }
+
+    [Parameter]
+    public bool Edit { get; set; }
+
+    private PasswordModel info = new PasswordModel();
+
+    public string TxtType = "password";
+
+    private Task HandleValidSubmit()
+    {
+        if(Edit) 
+        {
+            return EditElement.InvokeAsync(Element);
+        }
+        return Create.InvokeAsync(Element);
+    }
+
+    private Task ModalCancel()
+    {
+        return OnClose.InvokeAsync();
+    }
+
+    public void ShowPassword()
+    {
+        if (this.TxtType == "password")
+        {
+            this.TxtType = "text";
+        }
+        else
+        {
+            this.TxtType = "password";
+        }
+    }
+}
+<style> 
+   .e-input-eye:before {
+        content:'\e345';
+        font-family: e-icons;
+        font-size: 13px;
+    }
+</style> 
