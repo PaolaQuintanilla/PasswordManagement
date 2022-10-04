@@ -11,60 +11,51 @@
             <div class="modal-header">
                 <h4 class="modal-title">Add Password</h4>
             </div>
-             <EditForm Model="@Element" OnValidSubmit="@HandleValidSubmit">
+            <EditForm Model="@Password" OnValidSubmit="@HandleValidSubmit">
                 <div class="modal-body">
                     <DataAnnotationsValidator />
-                    
                     <p>
                         <label for="identifier">Name: </label>
-                        <InputText class="form-control e-input" placeholder="Name" id="Name" @bind-Value="Element.Name" />
-                            <ValidationMessage For="() => Element.Name" />
+                        <InputText class="form-control e-input" placeholder="Name" id="Name" @bind-Value="Password.Name" />
+                        <ValidationMessage For="() => Password.Name" />
                     </p>
 
                     <p>
                         <label for="identifier">URL: </label>
-                        <InputText class="form-control e-input" placeholder="sample.com" id="identifier" @bind-Value="Element.URL" />
-                            <ValidationMessage For="() => Element.URL" />
+                        <InputText class="form-control e-input" placeholder="sample.com" id="identifier" @bind-Value="Password.URL" />
+                        <ValidationMessage For="() => Password.URL" />
                     </p>
                     <p>
                         <label for="identifier">Username: </label>
-                        <InputText class="form-control e-input" placeholder="Username" id="Username" @bind-Value="Element.UserName" />
-                        <ValidationMessage For="() => Element.UserName" />
+                        <InputText class="form-control e-input" placeholder="Username" id="Username" @bind-Value="Password.UserName" />
+                        <ValidationMessage For="() => Password.UserName" />
                     </p>
                     <p>
                         <label for="identifier">Password: </label>
                         <div class='e-input-group'>
-                            <InputText type="@TxtType" class="form-control e-input" placeholder="Password" id="identifier" @bind-Value="Element.Password" />
+                            <InputText type="@TxtType" class="form-control e-input" placeholder="Password" id="identifier" @bind-Value="Password.Password" />
                             <span class='e-icons e-input-eye' @onclick="ShowPassword"></span>
                             <SfIcon Name="IconName.Copy" @onclick="OnClick"></SfIcon>
                         </div>
-                        <ValidationMessage For="() => Element.Password" />
+                        <ValidationMessage For="() => Password.Password" />
                     </p>
-                    @*<div id="ControlRegion">
-                        <div class="col-lg-6 control-section">
-                            <div class='e-input-group'>
-                                <input class='e-input' type="@TxtType" placeholder='Enter Password'>
-                                <span class='e-icons e-input-eye' @onclick="ShowPassword"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <i class="fa-solid fa-eye"></i>*@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
                     <button type="button" class="btn" @onclick="@ModalCancel">Cancel</button>
                 </div>
-             </EditForm>
+            </EditForm>
         </div>
     </div>
 </div>
 
 @code {
+
     [Parameter]
     public EventCallback<PasswordModel> OnClose { get; set; }
 
     [Parameter]
-    public EventCallback<PasswordModel> Create { get; set; }
+    public EventCallback<PasswordModel> CreateElement { get; set; }
 
     [Parameter]
     public EventCallback<PasswordModel> EditElement { get; set; }
@@ -75,17 +66,29 @@
     [Parameter]
     public bool Edit { get; set; }
 
-    private PasswordModel info = new PasswordModel();
 
+    private PasswordModel info = new PasswordModel();
+    public PasswordModel Password = new PasswordModel();
     public string TxtType = "password";
+
+    protected override async Task OnInitializedAsync()
+    {
+        if(Edit)
+        {
+            Password.Id = Element.Id;
+            Password.UserName = Element.UserName;
+            Password.Name = Element.Name;
+            Password.URL = Element.URL;
+        }
+    }
 
     private Task HandleValidSubmit()
     {
         if(Edit) 
         {
-            return EditElement.InvokeAsync(Element);
+            return EditElement.InvokeAsync(Password);
         }
-        return Create.InvokeAsync(Element);
+        return CreateElement.InvokeAsync(Password);
     }
 
     private Task ModalCancel()
@@ -107,7 +110,7 @@
 
     private async Task OnClick()
     {
-        await ClipboardService.CopyToClipboard(Element.Password);
+        await ClipboardService.CopyToClipboard(Password.Password);
     }
 }
 <style> 
