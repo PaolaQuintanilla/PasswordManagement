@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using PasswordManagement.Data;
 using PasswordManagement.Services;
 using Syncfusion.Blazor;
 

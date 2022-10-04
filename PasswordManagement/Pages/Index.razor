@@ -1,5 +1,4 @@
 ﻿@page "/"
-@using PasswordManagement.Data
 @using PasswordManagement.DataModel
 @using PasswordManagement.Services
 @inject IPasswordService pwsService;
@@ -70,6 +69,7 @@ Welcome to your place to manage your password
                 item.UserName = information.UserName;
                 item.Name = information.Name;
                 item.URL = information.URL;
+                break;
             }
         }
         Element = new PasswordModel();
