@@ -1,6 +1,10 @@
 ﻿@using PasswordManagement.Data
 @using PasswordManagement.DataModel
+@using PasswordManagement.Services
+@using Syncfusion.Blazor.Buttons
+@inject IClipboardService ClipboardService
 @inject IJSRuntime JS
+
 <div class="modal fade show" id="myModal" style="display:block; background-color: rgba(10,10,10,.8);" aria-modal="true" role="dialog">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -13,25 +17,26 @@
                     
                     <p>
                         <label for="identifier">Name: </label>
-                            <InputText class="form-control" placeholder="Name" id="Name" @bind-Value="Element.Name" />
+                        <InputText class="form-control e-input" placeholder="Name" id="Name" @bind-Value="Element.Name" />
                             <ValidationMessage For="() => Element.Name" />
                     </p>
 
                     <p>
                         <label for="identifier">URL: </label>
-                            <InputText class="form-control" placeholder="sample.com" id="identifier" @bind-Value="Element.URL" />
+                        <InputText class="form-control e-input" placeholder="sample.com" id="identifier" @bind-Value="Element.URL" />
                             <ValidationMessage For="() => Element.URL" />
                     </p>
                     <p>
                         <label for="identifier">Username: </label>
-                            <InputText class="form-control" placeholder="Username" id="Username" @bind-Value="Element.UserName" />
-                            <ValidationMessage For="() => Element.UserName" />
+                        <InputText class="form-control e-input" placeholder="Username" id="Username" @bind-Value="Element.UserName" />
+                        <ValidationMessage For="() => Element.UserName" />
                     </p>
                     <p>
                         <label for="identifier">Password: </label>
                         <div class='e-input-group'>
-                            <InputText type="@TxtType" class="form-control" placeholder="Password" id="identifier" @bind-Value="Element.Password" />
+                            <InputText type="@TxtType" class="form-control e-input" placeholder="Password" id="identifier" @bind-Value="Element.Password" />
                             <span class='e-icons e-input-eye' @onclick="ShowPassword"></span>
+                            <SfIcon Name="IconName.Copy" @onclick="OnClick"></SfIcon>
                         </div>
                         <ValidationMessage For="() => Element.Password" />
                     </p>
@@ -98,6 +103,11 @@
         {
             this.TxtType = "password";
         }
+    }
+
+    private async Task OnClick()
+    {
+        await ClipboardService.CopyToClipboard(Element.Password);
     }
 }
 <style> 

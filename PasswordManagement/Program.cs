@@ -2,18 +2,20 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using PasswordManagement.Data;
 using PasswordManagement.Services;
+using Syncfusion.Blazor;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-//builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddScoped<IClipboardService, ClipboardService>();
 builder.Services.AddSingleton<PasswordService>();
 builder.Services.AddHttpClient<IPasswordService, PasswordService>(client =>
 {
     client.BaseAddress = new Uri("https://localhost:7154/");
 });
+builder.Services.AddSyncfusionBlazor(options => { options.IgnoreScriptIsolation = true; });
 
 
 var app = builder.Build();
@@ -29,7 +31,6 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-//app.UseAuthentication();
 app.MapControllers();
 
 app.MapBlazorHub();
