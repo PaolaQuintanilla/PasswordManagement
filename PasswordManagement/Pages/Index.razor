@@ -1,6 +1,4 @@
 ﻿@page "/"
-@using PasswordManagement.Componenta2
-@using PasswordManagement.Components
 @using PasswordManagement.Data
 @using PasswordManagement.DataModel
 @using PasswordManagement.Services
@@ -10,22 +8,23 @@
 <PageTitle>Password Management</PageTitle>
 
 <h1>Password Management</h1>
+<test></test>
 
 Welcome to your place to manage your password
 
 <div class="container d-flex flex-wrap align-items-center">
     @{
         foreach (PasswordModel infoP in informationPasswords)
-    {
-                        <Card Information="@infoP" Edit="@OpenEditDialog" Delete="@DeleteElement" />
-    }}
+        {
+            <Card Information="@infoP" Edit="@OpenEditDialog" Delete="@DeleteElement" />
+        }
+    }
 </div>
-
 <SfButton CssClass="e-round" IconCss="e-icons e-plus-icon" class="fixed-button" IsPrimary="true" @onclick="() => OpenCreateDialog()"></SfButton>
 
 @if(OpenDialog) 
 {
-    <PasswordManagement.Componenta2.ModelDialog OnClose="@CloseDialog" CreateElement="@CreateElement" EditElement="@UpdateElement" Element="@Element" Edit="@Edit" />
+    <ModelDialog OnClose="@CloseDialog" CreateElement="@CreateElement" EditElement="@UpdateElement" Element="@Element" Edit="@Edit" />
 } 
 
 
