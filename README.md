@@ -37,5 +37,21 @@
 
 The passwords cards will be display in the main page you can scroll down to see all passwords. The Card information has Name, UserName and URL, 
 when you click in the edit button it will display a Dialog with the information of it card and you can edit and press submit to save or cancel 
-to discard the changes, at the dialog you can clipboad the password or show and hide it. For add a new card with the password information you can 
-press the plus button that you can find at the bottom right of the page.  
+to discard the changes, at the dialog you can clipboad the password or show and hide it. For add a new card with the password information you can press the plus button that you can find at the bottom right of the page.  
+
+
+##Tecnologies used for this project
+
+- Blazor (Client)
+- ASP.Net core (Server)
+- Class Library .Net for the Data model
+
+##Libraries
+- Syncfusion for the buttons style 
+
+#Run Project
+
+- Press Start button at the top of the app
+
+It start the two webapp and server projects 
+
