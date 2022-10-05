@@ -3,20 +3,25 @@
 
 ##Features of the project
 - Create Card Component for the main page with information of the password
+
 ![image](https://user-images.githubusercontent.com/17805104/193955908-cd38333e-c14c-40f0-93be-279338ebea0b.png)
 
 - Add functionality to Edit and Delete buttons from the card
 
 - Create Dialog for create and edit the Card Information
+
 ![image](https://user-images.githubusercontent.com/17805104/193956004-ff8da50c-b565-4dd4-a873-13fb4eb7aca8.png)
 
 - Validate field from the Dialog
+
 ![image](https://user-images.githubusercontent.com/17805104/193956102-827b7f97-3917-4156-80b7-2206d68882cc.png)
 
 - Add show and hide functionality and clipboard for the password
+
 ![image](https://user-images.githubusercontent.com/17805104/193956223-0821a7b4-b383-4ed5-8aaf-8d08dd9571f6.png)
 
 - Create Api CRUD using ASP.NET core
+
 ![image](https://user-images.githubusercontent.com/17805104/193956361-f9a1c48d-5c7f-4ab1-a606-524b1020f6b3.png)
 
 - Create Repository for the backend 
