@@ -51,7 +51,22 @@ to discard the changes, at the dialog you can clipboad the password or show and 
 
 #Run Project
 
+Before the run the app you need to set up this:
+
+- In the Visual Studio 2022, right click on the solution
+
+![image](https://user-images.githubusercontent.com/17805104/194100756-655b0581-7e35-4b6e-be6c-5ea5e71fd19c.png)
+
+- Then click on Properties option
+
+![image](https://user-images.githubusercontent.com/17805104/194101007-0d1855e0-2b7e-4c31-a188-156266b2f937.png)
+
+- Select Multiple startup project and change the action for PasswordManagement and PasswordManagement.Api to Start and click the Ok button
+
+![image](https://user-images.githubusercontent.com/17805104/194101551-6bd94a26-639b-47ca-ab91-83a8afe521e1.png)
+ 
+
 - Press Start button at the top of the app
 
-It start the two webapp and server projects 
+Starts the web application and the server project
 
