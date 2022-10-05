@@ -12,26 +12,11 @@ namespace PasswordManagement.Api.Controllers
         public static List<PasswordModel> passwords = new List<PasswordModel>()
         {
             new PasswordModel() { Id = 1, Name = "Gmail", UserName = "JosePerez", Password = "password123", URL = "https://accounts.google.com/" },
-            new PasswordModel() { Id = 1, Name = "Gmail", UserName = "JosePerez", Password = "password123", URL = "https://accounts.google.com/" },
-            new PasswordModel() { Id = 1, Name = "Gmail", UserName = "JosePerez", Password = "password123", URL = "https://accounts.google.com/" },
-            new PasswordModel() { Id = 1, Name = "Gmail", UserName = "JosePerez", Password = "password123", URL = "https://accounts.google.com/" },
-            new PasswordModel() { Id = 1, Name = "Gmail", UserName = "JosePerez", Password = "password123", URL = "https://accounts.google.com/" },
-            new PasswordModel() { Id = 1, Name = "Gmail", UserName = "JosePerez", Password = "password123", URL = "https://accounts.google.com/" },
-            new PasswordModel() { Id = 1, Name = "Gmail", UserName = "JosePerez", Password = "password123", URL = "https://accounts.google.com/" },
-            new PasswordModel() { Id = 1, Name = "Gmail", UserName = "JosePerez", Password = "password123", URL = "https://accounts.google.com/" },
-            new PasswordModel() { Id = 1, Name = "Gmail", UserName = "JosePerez", Password = "password123", URL = "https://accounts.google.com/" },
-            new PasswordModel() { Id = 1, Name = "Gmail", UserName = "JosePerez", Password = "password123", URL = "https://accounts.google.com/" },
-            new PasswordModel() { Id = 1, Name = "Gmail", UserName = "JosePerez", Password = "password123", URL = "https://accounts.google.com/" },
-            new PasswordModel() { Id = 1, Name = "Gmail", UserName = "JosePerez", Password = "password123", URL = "https://accounts.google.com/" },
-            new PasswordModel() { Id = 1, Name = "Gmail", UserName = "JosePerez", Password = "password123", URL = "https://accounts.google.com/" },
-            new PasswordModel() { Id = 1, Name = "Gmail", UserName = "JosePerez", Password = "password123", URL = "https://accounts.google.com/" },
-            new PasswordModel() { Id = 1, Name = "Gmail", UserName = "JosePerez", Password = "password123", URL = "https://accounts.google.com/" },
-            new PasswordModel() { Id = 1, Name = "Gmail", UserName = "JosePerez", Password = "password123", URL = "https://accounts.google.com/" },
-            new PasswordModel() { Id = 1, Name = "Gmail", UserName = "JosePerez", Password = "password123", URL = "https://accounts.google.com/" },
-            new PasswordModel() { Id = 1, Name = "Gmail", UserName = "JosePerez", Password = "password123", URL = "https://accounts.google.com/" },
-            new PasswordModel() { Id = 1, Name = "Gmail", UserName = "JosePerez", Password = "password123", URL = "https://accounts.google.com/" },
-            new PasswordModel() { Id = 1, Name = "Gmail", UserName = "JosePerez", Password = "password123", URL = "https://accounts.google.com/" },
-            new PasswordModel() { Id=2, Name = "Facebook", UserName = "Jose123", Password = "password454", URL = "https://Facebook.com/" }
+            new PasswordModel() { Id = 2, Name = "Teams", UserName = "Jose.Perez", Password = "password123", URL = "https://teams.microsoft.com/go#" },
+            new PasswordModel() { Id = 3, Name = "Github", UserName = "Jose.Perez", Password = "password234", URL = "https://github.google.com/" },
+            new PasswordModel() { Id = 4, Name = "Gitlab", UserName = "Jose.Perez", Password = "password453", URL = "https://gitlab.com/" },
+            new PasswordModel() { Id = 5, Name = "Classroom", UserName = "JosePerez", Password = "password123", URL = "https://classrom.google.com/" },
+            new PasswordModel() { Id = 6, Name = "Facebook", UserName = "Jose123", Password = "password454", URL = "https://Facebook.com/" }
         };
 
         private readonly IPasswordRepository passwordRepository;
